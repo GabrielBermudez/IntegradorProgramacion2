@@ -97,7 +97,7 @@ public class ControladorCursado implements ActionListener, MouseListener {
 					   this.vistaCursado.getTfCodigoMateria().getText().length() !=0 &&
 					   this.vistaCursado.getTfNota().getText().length() !=0 &&
 					   ValidarDatosNumericos() && 
-					   !this.modeloCursado.VerificarExistenciaAlumno(Integer.parseInt(this.vistaCursado.getTfDniAlumno().getText()),Integer.parseInt(this.vistaCursado.getTfCodigoMateria().getText()))
+					   this.modeloCursado.VerificarExistenciaAlumno(Integer.parseInt(this.vistaCursado.getTfDniAlumno().getText()),Integer.parseInt(this.vistaCursado.getTfCodigoMateria().getText()))
 					   //!this.modeloCursado.VerificarExistenciaRepetida(Integer.parseInt(this.vistaCursado.getTfIDProfesor().getText()), this.vistaCursado.getTfNombre().getText(), this.vistaCursado.getTfCodigoMateria().getText())
 					   )
 					{

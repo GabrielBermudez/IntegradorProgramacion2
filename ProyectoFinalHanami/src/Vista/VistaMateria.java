@@ -36,6 +36,7 @@ public class VistaMateria extends JFrame {
 	private JButton btnEliminar;
 	private JTextField tfDniProfesor;
 	private JLabel lbTituloProfesor;
+	private JLabel lblNewLabel;
 	
 	
 	public VistaMateria() {
@@ -75,25 +76,25 @@ public class VistaMateria extends JFrame {
 		
 		JLabel lbTituloMateria = new JLabel("Materia");
 		lbTituloMateria.setHorizontalAlignment(SwingConstants.CENTER);
-		lbTituloMateria.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 26));
-		lbTituloMateria.setBounds(149, 1, 275, 32);
+		lbTituloMateria.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 26));
+		lbTituloMateria.setBounds(-56, 11, 275, 32);
 		contentPane.add(lbTituloMateria);
 		
 		JLabel lbCodigo = new JLabel("Codigo:");
-		lbCodigo.setBounds(42, 64, 65, 14);
+		lbCodigo.setBounds(42, 75, 65, 14);
 		contentPane.add(lbCodigo);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setBounds(42, 89, 65, 14);
+		lblNombre.setBounds(42, 100, 65, 14);
 		contentPane.add(lblNombre);
 		
 		tfCodigo = new JTextField();
-		tfCodigo.setBounds(121, 64, 86, 20);
+		tfCodigo.setBounds(121, 75, 86, 20);
 		contentPane.add(tfCodigo);
 		tfCodigo.setColumns(10);
 		
 		tfNombre = new JTextField();
-		tfNombre.setBounds(121, 89, 86, 20);
+		tfNombre.setBounds(121, 100, 86, 20);
 		contentPane.add(tfNombre);
 		tfNombre.setColumns(10);
 		
@@ -111,11 +112,11 @@ public class VistaMateria extends JFrame {
 		
 		JLabel lbDniProfesor = new JLabel("DNI Profesor:");
 		lbDniProfesor.setHorizontalAlignment(SwingConstants.LEFT);
-		lbDniProfesor.setBounds(42, 114, 89, 14);
+		lbDniProfesor.setBounds(42, 125, 89, 14);
 		contentPane.add(lbDniProfesor);
 		
 		tfDniProfesor = new JTextField();
-		tfDniProfesor.setBounds(121, 114, 86, 20);
+		tfDniProfesor.setBounds(121, 125, 86, 20);
 		contentPane.add(tfDniProfesor);
 		tfDniProfesor.setColumns(10);
 		
@@ -124,6 +125,11 @@ public class VistaMateria extends JFrame {
 		lbTituloProfesor.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
 		lbTituloProfesor.setBounds(184, 207, 106, 19);
 		contentPane.add(lbTituloProfesor);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\gabri\\Desktop\\HANAMI\\ProyectoFinalHanami\\src\\Image\\FondoVistaMateria.png"));
+		lblNewLabel.setBounds(0, 1, 614, 371);
+		contentPane.add(lblNewLabel);
 	}
 
 

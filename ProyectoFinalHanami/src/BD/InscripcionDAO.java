@@ -6,29 +6,29 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-import Modelo.ModeloCursado;
+import Modelo.ModeloInscripcion;
 
-public class CursadoDAO{
+public class InscripcionDAO{
 	
 	private ConexionMySQL conexionMySQL = new ConexionMySQL();
 	
 	private String sqlQuery="";
 	PreparedStatement preparedStmt=null;
 	
-	public void IngresarDatos(ModeloCursado cursado){
+	public void IngresarDatos(ModeloInscripcion inscripcion){
 		try {
 			Connection conexion = conexionMySQL.ConectarMySQL();
 			
-			String sqlQuery="INSERT INTO cursado(cur_alu_dni, cur_mat_cod, cur_nota) VALUES (?,?,?)";
+			String sqlQuery="INSERT INTO inscripcion(insc_nombre, insc_fecha,insc_car_cod) VALUES (?,?,?)";
 		
 			preparedStmt=conexion.prepareStatement("SET FOREIGN_KEY_CHECKS=0");
 			preparedStmt.executeQuery();
 			
 			preparedStmt = (PreparedStatement) conexion.prepareStatement(sqlQuery);
-			
-			preparedStmt.setString(1, cursado.getDniAlumno());
-		    preparedStmt.setString(2, cursado.getCodigoMateria());
-		    preparedStmt.setInt(3, cursado.getNota());
+			preparedStmt.setString(1, inscripcion.getDniAlumno());
+			preparedStmt.setDate(2, inscripcion.getFecha());
+		    preparedStmt.setString(3, inscripcion.getCodigoCarrera());
+		    
 
 		    
 		    preparedStmt.execute();
@@ -37,38 +37,36 @@ public class CursadoDAO{
 		    conexionMySQL.CerrarMySQL();
 		    
 		}catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(CursadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InscripcionDAO.class.getName()).log(Level.SEVERE, null, ex);
             
 		}
 
 	
 	}
-
 	
-	public ArrayList<ModeloCursado> ConsultaNotasDAO()  {
-        ArrayList<ModeloCursado> notas = new ArrayList<>();
+	public ArrayList<ModeloInscripcion> ConsultaInscripcionDAO()  {
+        ArrayList<ModeloInscripcion> inscripciones = new ArrayList<>();
          
         	PreparedStatement consulta;
 			try {
 				Connection conexion = conexionMySQL.ConectarMySQL();
-				consulta = conexion.prepareStatement("SELECT cursado.cur_alu_dni,alumno.alu_nombre,alumno.alu_apellido,cursado.cur_mat_cod,materia.mat_nombre,cursado.cur_nota, materia.mat_prof_dni,profesor.prof_nombre,profesor.prof_apellido,profesor.prof_telefono FROM cursado,materia, alumno , profesor WHERE alumno.alu_dni= cursado.cur_alu_dni AND materia.mat_cod = cursado.cur_mat_cod AND materia.mat_prof_dni = profesor.prof_dni;");
-				 ResultSet resultados = consulta.executeQuery();
-
+				consulta = conexion.prepareStatement("SELECT inscripcion.insc_cod, inscripcion.insc_nombre,alumno.alu_nombre,alumno.alu_apellido,alumno.alu_telefono, inscripcion.insc_car_cod,carrera.car_nombre,carrera.car_duracion,inscripcion.insc_fecha FROM inscripcion,carrera,alumno WHERE carrera.car_cod = inscripcion.insc_car_cod AND inscripcion.insc_nombre = alumno.alu_dni");
+				ResultSet resultados = consulta.executeQuery();
+				 
 		            while (resultados.next()) {
-		            	ModeloCursado cursado = new ModeloCursado();
-		            	//System.out.println(resultados.getInt(1));
-		            	cursado.setDniAlumno(resultados.getString(1));
-		            	cursado.setNombre(resultados.getString(2));
-		            	cursado.setApellido(resultados.getString(3));	  
-		            	cursado.setCodigoMateria(resultados.getString(4));
-		            	cursado.setNombreMateria(resultados.getString(5));
-		            	cursado.setNota(resultados.getInt(6));
-		            	cursado.setDniProfesor(resultados.getString(7));
-		            	cursado.setNombreProfesor(resultados.getString(8));
-		            	cursado.setApellidoProfesor(resultados.getString(9));
-		            	cursado.setTelefonoProfesor(resultados.getString(10));
+		            	ModeloInscripcion inscripcion = new ModeloInscripcion();
 		            	
-		            	notas.add(cursado);
+		            	inscripcion.setCodigo(resultados.getString(1));
+		            	inscripcion.setDniAlumno(resultados.getString(2));
+		            	inscripcion.setNombre(resultados.getString(3));
+		            	inscripcion.setApellido(resultados.getString(4));
+		            	inscripcion.setTelefono(resultados.getString(5));
+		            	inscripcion.setCodigoCarrera(resultados.getString(6));
+		            	inscripcion.setNombreCarrera(resultados.getString(7));
+		            	inscripcion.setDuracion(resultados.getString(8));
+		            	inscripcion.setFecha(resultados.getDate(9));
+		            	
+		            	inscripciones.add(inscripcion);
 		               }
 		            
 		            resultados.close();
@@ -76,63 +74,64 @@ public class CursadoDAO{
 		            conexionMySQL.CerrarMySQL();
 				
 			}catch (ClassNotFoundException | SQLException ex) {
-	            Logger.getLogger(CursadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+	            Logger.getLogger(InscripcionDAO.class.getName()).log(Level.SEVERE, null, ex);
 	            
 			}
 			
-       return notas;
+       return inscripciones;
         
     }
 	
-	public void ModificarNota(ModeloCursado cursado) {
+	public void ModificarInscripcion(ModeloInscripcion cursado) {
 		 try{	
-			 	
-			 	String sqlQuery="UPDATE cursado SET  cur_nota=? WHERE cur_alu_dni=? AND cur_mat_cod=?";
+			 	String sqlQuery="UPDATE inscripcion SET insc_nombre=?, insc_fecha=?, insc_car_cod=? WHERE insc_cod=?";
 			 	Connection conexion = conexionMySQL.ConectarMySQL();
-	            PreparedStatement preparedStmt = (PreparedStatement)conexion.prepareStatement(sqlQuery);
+			 	PreparedStatement preparedStmt = (PreparedStatement)conexion.prepareStatement(sqlQuery);
+	     
+	            preparedStmt.setString(1, cursado.getDniAlumno());
+	            preparedStmt.setDate(2, cursado.getFecha());
+	            preparedStmt.setString(3, cursado.getCodigoCarrera());
+	            preparedStmt.setString(4, cursado.getCodigo());
+	       
 	            
-	          
-	            preparedStmt.setInt(1, cursado.getNota());
-	            preparedStmt.setString(2, cursado.getDniAlumno());
-	            preparedStmt.setString(3, cursado.getCodigoMateria());
 	            preparedStmt.executeUpdate();
 	            preparedStmt.close();
 	            conexionMySQL.CerrarMySQL();
 	           
 	            
 	        }catch(ClassNotFoundException |SQLException ex) {
-	            Logger.getLogger(CursadoDAO.class.getName()).log(Level.SEVERE, null, ex);     
+	            Logger.getLogger(InscripcionDAO.class.getName()).log(Level.SEVERE, null, ex);     
 	        }
 	}
 	
-	public void EliminarNota(int dni) {
+	public void EliminarInscripcion(String codigo) {
 	
 		try {
 			//System.out.println(id);
-			String sqlQuery="DELETE FROM cursado WHERE cur_alu_dni = ?";
+			String sqlQuery="DELETE FROM inscripcion WHERE insc_cod = ?";
 			Connection conexion = conexionMySQL.ConectarMySQL();
 			preparedStmt=conexion.prepareStatement("SET FOREIGN_KEY_CHECKS=0");
 			preparedStmt.executeQuery();
 			PreparedStatement preparedStmt = (PreparedStatement)conexion.prepareStatement(sqlQuery);
-			preparedStmt.setInt(1, dni);
+			preparedStmt.setString(1, codigo);
 			preparedStmt.execute();
 			preparedStmt.close();
 	        conexionMySQL.CerrarMySQL();
 	           
 			
 		 }catch(ClassNotFoundException |SQLException ex) {
-	            Logger.getLogger(CursadoDAO.class.getName()).log(Level.SEVERE, null, ex);     
+	            Logger.getLogger(InscripcionDAO.class.getName()).log(Level.SEVERE, null, ex);     
 	        }
 }
 	
-	public boolean ValidarExistenciaAlumno(int alumno_dni, int codigo) {
+	public boolean ValidarExistenciaAlumno(String alumno_dni, String codigo) {
 		try {
 				Connection conexion = conexionMySQL.ConectarMySQL();
 				preparedStmt=conexion.prepareStatement("SET FOREIGN_KEY_CHECKS=0");
 				preparedStmt.executeQuery();
-				PreparedStatement consulta = conexion.prepareStatement("SELECT * FROM cursado WHERE cur_alu_dni = ? AND cur_mat_cod=?");
-				consulta.setInt(1,alumno_dni);
-				consulta.setInt(2, codigo);
+				PreparedStatement consulta = conexion.prepareStatement("SELECT * FROM inscripcion WHERE insc_nombre = ? AND insc_car_cod=?");
+				consulta.setString(1,alumno_dni);
+				consulta.setString(2, codigo);
 				ResultSet resultados = consulta.executeQuery();
 				if(resultados.next()){
 					consulta.close();
@@ -146,14 +145,14 @@ public class CursadoDAO{
 		          
 			
 		 }catch(ClassNotFoundException |SQLException ex) {
-	            Logger.getLogger(ProfesorDAO.class.getName()).log(Level.SEVERE, null, ex);     
+	            Logger.getLogger(InscripcionDAO.class.getName()).log(Level.SEVERE, null, ex);     
 	        }
 		
 		
 		return false;
 	}
 	
-	public boolean ValidarExistenciaRepetida(int profesor_id, String nombreMateria, String codigo) {
+	/*public boolean ValidarExistenciaRepetida(int profesor_id, String nombreMateria, String codigo) {
 		try {
 				Connection conexion = conexionMySQL.ConectarMySQL();
 				preparedStmt=conexion.prepareStatement("SET FOREIGN_KEY_CHECKS=0");
@@ -181,5 +180,5 @@ public class CursadoDAO{
 		
 		
 		return false;
-	}
+	}*/
 }

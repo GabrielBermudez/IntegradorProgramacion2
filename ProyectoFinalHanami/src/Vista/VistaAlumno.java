@@ -21,6 +21,7 @@ import java.awt.SystemColor;
 import javax.swing.ImageIcon;
 import com.toedter.calendar.JDateChooser;
 import java.awt.ComponentOrientation;
+import javax.swing.JSeparator;
 
 public class VistaAlumno extends JFrame {
 	
@@ -48,8 +49,26 @@ public class VistaAlumno extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBackground(new Color(0, 0, 0));
+		separator_1.setForeground(Color.BLACK);
+		separator_1.setBounds(10, 168, 429, 2);
+		contentPane.add(separator_1);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBackground(new Color(0, 0, 0));
+		separator.setForeground(Color.BLACK);
+		separator.setBounds(10, 316, 429, 2);
+		contentPane.add(separator);
+		
 
 		table = new JTable();
+		table.setSelectionForeground(new Color(0, 0, 128));
+		table.setSelectionBackground(new Color(0, 0, 128));
+		table.setGridColor(new Color(128, 128, 128));
+		table.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+		table.setForeground(new Color(0, 0, 0));
+		table.setBackground(new Color(192, 192, 192));
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setEnabled(false);
 		table.setBounds(10, 39, 399, 118);
@@ -60,80 +79,92 @@ public class VistaAlumno extends JFrame {
 		contentPane.add(scroll);
 		
 		btnVolver = new JButton("Volver");
-		btnVolver.setBounds(350, 352, 89, 23);
+		btnVolver.setBounds(350, 363, 89, 23);
 		contentPane.add(btnVolver);
 		
 		JLabel lbTituloIngresarAlumno = new JLabel("Ingresar Alumno");
 		lbTituloIngresarAlumno.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 26));
-		lbTituloIngresarAlumno.setBounds(92, 0, 275, 32);
+		lbTituloIngresarAlumno.setBounds(108, 0, 275, 32);
 		contentPane.add(lbTituloIngresarAlumno);
 		
 		JLabel lbNombre = new JLabel("Nombre:");
-		lbNombre.setBounds(10, 210, 65, 14);
+		lbNombre.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+		lbNombre.setBounds(10, 227, 65, 14);
 		contentPane.add(lbNombre);
 		
 		JLabel lblApellido = new JLabel("Apellido:");
-		lblApellido.setBounds(10, 238, 65, 14);
+		lblApellido.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+		lblApellido.setBounds(10, 255, 65, 14);
 		contentPane.add(lblApellido);
 		
 		JLabel lbDni = new JLabel("DNI:");
-		lbDni.setBounds(10, 183, 65, 14);
+		lbDni.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+		lbDni.setBounds(10, 200, 65, 14);
 		contentPane.add(lbDni);
 		
 		JLabel lbDomicilio = new JLabel("Domicilio:");
-		lbDomicilio.setBounds(242, 182, 65, 14);
+		lbDomicilio.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+		lbDomicilio.setBackground(Color.BLACK);
+		lbDomicilio.setBounds(242, 199, 78, 14);
 		contentPane.add(lbDomicilio);
 		
 		JLabel lbTelefono = new JLabel("Telefono:");
-		lbTelefono.setBounds(242, 207, 65, 14);
+		lbTelefono.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+		lbTelefono.setBounds(242, 224, 65, 14);
 		contentPane.add(lbTelefono);
 		
 		tfNombre = new JTextField();
-		tfNombre.setBounds(119, 205, 86, 20);
+		tfNombre.setBounds(119, 222, 86, 20);
 		contentPane.add(tfNombre);
 		tfNombre.setColumns(10);
 		
 		tfApellido = new JTextField();
-		tfApellido.setBounds(119, 233, 86, 20);
+		tfApellido.setBounds(119, 250, 86, 20);
 		contentPane.add(tfApellido);
 		tfApellido.setColumns(10);
 		
 		tfDni = new JTextField();
 		tfDni.setColumns(10);
-		tfDni.setBounds(119, 180, 86, 20);
+		tfDni.setBounds(119, 197, 86, 20);
 		contentPane.add(tfDni);
 		
 		tfDomicilio = new JTextField();
 		tfDomicilio.setColumns(10);
-		tfDomicilio.setBounds(317, 179, 86, 20);
+		tfDomicilio.setBounds(330, 196, 86, 20);
 		contentPane.add(tfDomicilio);
 		
 		tfTelefono = new JTextField();
 		tfTelefono.setColumns(10);
-		tfTelefono.setBounds(317, 204, 86, 20);
+		tfTelefono.setBounds(330, 221, 86, 20);
 		contentPane.add(tfTelefono);
 		
 		btnIngresar = new JButton("Ingresar");
-		btnIngresar.setBounds(78, 316, 89, 23);
+		btnIngresar.setBounds(78, 328, 89, 23);
 		contentPane.add(btnIngresar);
 		
 		btnModificar = new JButton("Modificar");
-		btnModificar.setBounds(188, 316, 89, 23);
+		btnModificar.setBounds(188, 328, 89, 23);
 		contentPane.add(btnModificar);
 		
 		btnEliminar = new JButton("Eliminar");
-		btnEliminar.setBounds(294, 316, 89, 23);
+		btnEliminar.setBounds(294, 328, 89, 23);
 		contentPane.add(btnEliminar);
 		
 		dateChooserFecha = new JDateChooser();
-		dateChooserFecha.setBounds(129, 264, 158, 20);
+		dateChooserFecha.setBounds(162, 285, 158, 20);
 		dateChooserFecha.setDateFormatString("dd/MM/yyyy");
 		contentPane.add(dateChooserFecha);
 		
 		
 		JLabel lbFechaNac = new JLabel("Fecha de Nacimiento:");
-		lbFechaNac.setBounds(10, 270, 126, 14);
+		lbFechaNac.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+		lbFechaNac.setBounds(10, 287, 157, 14);
 		contentPane.add(lbFechaNac);
+		
+		JLabel Fondo = new JLabel("");
+		Fondo.setIcon(new ImageIcon("C:\\Users\\gabri\\Desktop\\HANAMI\\ProyectoFinalHanami\\src\\Image\\Sakura.png"));
+		Fondo.setBounds(0, 0, 449, 386);
+		contentPane.add(Fondo);
 	}
 	
 	

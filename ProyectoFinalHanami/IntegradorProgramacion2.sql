@@ -35,7 +35,7 @@ CREATE TABLE `alumno` (
 
 /*Data for the table `alumno` */
 
-insert  into `alumno`(`alu_dni`,`alu_nombre`,`alu_apellido`,`alu_fec_nac`,`alu_domicilio`,`alu_telefono`,`alu_insc_cod`) values (34987564,'Leandro','Mercado','1996-06-21','Corralito','261676676',NULL),(39237216,'Gabriel Maximiliano','Bermudez','1995-10-06','Niñas de Ayohuma 1395','2614269628',NULL);
+insert  into `alumno`(`alu_dni`,`alu_nombre`,`alu_apellido`,`alu_fec_nac`,`alu_domicilio`,`alu_telefono`,`alu_insc_cod`) values (34567876,'Ramiro','Gonzalez','1996-09-13','Lujan','2615457345',NULL),(34987564,'Leandro','Mercado','1996-06-21','Corralito','261676676',NULL),(39237216,'Gabriel Maximiliano','Bermudez','1995-10-06','Niñas de Ayohuma 1395','2614269628',NULL);
 
 /*Table structure for table `carrera` */
 
@@ -49,6 +49,8 @@ CREATE TABLE `carrera` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `carrera` */
+
+insert  into `carrera`(`car_cod`,`car_nombre`,`car_duracion`) values (230,'Quimica','3'),(320,'Sistemas','5');
 
 /*Table structure for table `cursado` */
 
@@ -66,7 +68,7 @@ CREATE TABLE `cursado` (
 
 /*Data for the table `cursado` */
 
-insert  into `cursado`(`cur_alu_dni`,`cur_mat_cod`,`cur_nota`) values (34987564,490,8),(39237216,490,10);
+insert  into `cursado`(`cur_alu_dni`,`cur_mat_cod`,`cur_nota`) values (34567876,230,6),(34567876,430,8),(34567876,490,0),(34987564,230,10),(34987564,490,7),(39237216,230,10),(39237216,430,8),(39237216,490,10);
 
 /*Table structure for table `inscripcion` */
 
@@ -80,9 +82,11 @@ CREATE TABLE `inscripcion` (
   PRIMARY KEY (`insc_cod`),
   KEY `FK_inscripcion` (`insc_car_cod`),
   CONSTRAINT `FK_inscripcion` FOREIGN KEY (`insc_car_cod`) REFERENCES `carrera` (`car_cod`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `inscripcion` */
+
+insert  into `inscripcion`(`insc_cod`,`insc_nombre`,`insc_fecha`,`insc_car_cod`) values (5,'34567876','2020-06-01',230);
 
 /*Table structure for table `materia` */
 
@@ -99,7 +103,7 @@ CREATE TABLE `materia` (
 
 /*Data for the table `materia` */
 
-insert  into `materia`(`mat_cod`,`mat_nombre`,`mat_prof_dni`) values (430,'Estadistica',22876678),(490,'Programacion',22876453);
+insert  into `materia`(`mat_cod`,`mat_nombre`,`mat_prof_dni`) values (230,'Laboratorio II',23456734),(430,'Estadistica',22876678),(490,'Programacion',22876453);
 
 /*Table structure for table `profesor` */
 
@@ -117,7 +121,7 @@ CREATE TABLE `profesor` (
 
 /*Data for the table `profesor` */
 
-insert  into `profesor`(`prof_dni`,`prof_nombre`,`prof_apellido`,`prof_fec_nac`,`prof_domicilio`,`prof_telefono`) values (22876453,'Martin Ezequiel','Vargas','1985-07-20','Desconocido','2615647834'),(22876678,'Maria','Esposito','1985-07-20','Desconocido','2615647834');
+insert  into `profesor`(`prof_dni`,`prof_nombre`,`prof_apellido`,`prof_fec_nac`,`prof_domicilio`,`prof_telefono`) values (22876453,'Martin Ezequiel','Vargas','1985-07-20','Desconocido','2615647834'),(22876678,'Maria','Esposito','1985-07-20','Desconocido','2615647834'),(23456734,'Julio','Monetti','1960-06-24','Desconocido','2615673456');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

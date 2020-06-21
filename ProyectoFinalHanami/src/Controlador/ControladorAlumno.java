@@ -71,7 +71,7 @@ public class ControladorAlumno implements ActionListener, MouseListener  {
 	            Date fechasql = new Date(fechaDate.getTime());
 	   
 	            this.alumnoModelo.setFechaNac(fechasql);
-	            ValidarFecha(fechasql);
+	            
 				
 	            this.alumnoModelo.CargarDatos(this.alumnoModelo);
 				

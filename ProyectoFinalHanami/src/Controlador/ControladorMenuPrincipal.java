@@ -5,12 +5,16 @@ import java.awt.event.ActionListener;
 
 
 import Modelo.ModeloAlumno;
+import Modelo.ModeloCarrera;
 import Modelo.ModeloCursado;
+import Modelo.ModeloInscripcion;
 import Modelo.ModeloMateria;
 import Modelo.ModeloMenuPrincipal;
 import Modelo.ModeloProfesor;
 import Vista.VistaAlumno;
+import Vista.VistaCarrera;
 import Vista.VistaCursado;
+import Vista.VistaInscripcion;
 import Vista.VistaMateria;
 import Vista.VistaProfesor;
 import Vista.MenuPrincipal;
@@ -34,6 +38,8 @@ public class ControladorMenuPrincipal implements ActionListener {
 	    this.menuPrincipal.getBtnProfesor().addActionListener(this);
 	    this.menuPrincipal.getBtnMateria().addActionListener(this);
 	    this.menuPrincipal.getBtnCursado().addActionListener(this);
+	    this.menuPrincipal.getBtnCarrera().addActionListener(this);
+	    this.menuPrincipal.getBtnInscripcion().addActionListener(this);
 
     }
 
@@ -73,7 +79,28 @@ public class ControladorMenuPrincipal implements ActionListener {
 			ControladorCursado controladorCursado = new ControladorCursado(vistaCursado,modeloCursado,this.menuPrincipal);
 			
 			this.menuPrincipal.dispose();
+			
+		}else if(e.getSource().equals(this.menuPrincipal.getBtnCarrera())){
+			VistaCarrera vistaCarrera = new VistaCarrera();
+			ModeloCarrera modeloCarrera = new ModeloCarrera();
+			
+			ControladorCarrera controladorCarrera = new ControladorCarrera(vistaCarrera, modeloCarrera, this.menuPrincipal);
+			
+			this.menuPrincipal.dispose();
+			
+		}else if(e.getSource().equals(this.menuPrincipal.getBtnInscripcion())){
+			
+			VistaInscripcion vistaInscripcion = new VistaInscripcion();
+			ModeloInscripcion modeloInscripcion = new ModeloInscripcion();
+			
+			ControladorInscripcion controladorInscripcion = new ControladorInscripcion(vistaInscripcion,modeloInscripcion,this.menuPrincipal);
+			
+			this.menuPrincipal.dispose();
+
+			
 		}
+		
+		
 		
 	}
 	

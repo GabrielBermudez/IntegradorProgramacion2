@@ -23,6 +23,8 @@ public class MenuPrincipal extends JFrame {
 	private JButton btnProfesor;
 	private JButton btnMateria;
 	private JButton btnCursado;
+	private JButton btnCarrera;
+	private JButton btnInscripcion;
 
 	
 	public MenuPrincipal() {
@@ -40,92 +42,68 @@ public class MenuPrincipal extends JFrame {
 		contentPane.add(labelTitulo);
 		
 		btnAlumno = new JButton("Alumno");
-		btnAlumno.setBounds(144, 83, 116, 38);
+		btnAlumno.setBounds(144, 63, 116, 38);
 		contentPane.add(btnAlumno);
 		
 		btnProfesor = new JButton("Profesor");
-		btnProfesor.setBounds(144, 144, 116, 38);
+		btnProfesor.setBounds(144, 112, 116, 38);
 		contentPane.add(btnProfesor);
 		
 		btnMateria = new JButton("Materia");
-		btnMateria.setBounds(145, 205, 116, 38);
+		btnMateria.setBounds(144, 161, 116, 38);
 		contentPane.add(btnMateria);
 		
 		btnCursado = new JButton("Notas");
-		btnCursado.setBounds(146, 264, 116, 38);
+		btnCursado.setBounds(144, 206, 116, 38);
 		contentPane.add(btnCursado);
 		
 		JButton btnAcercaDe = new JButton("Acerca de");
 		btnAcercaDe.setBounds(429, 367, 89, 23);
 		contentPane.add(btnAcercaDe);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\gabri\\eclipse-workspace\\ProyectoFinalHanami\\src\\Images\\FondoMenuPrincipal.png"));
-		lblNewLabel.setBounds(0, 0, 547, 412);
-		contentPane.add(lblNewLabel);
+		btnCarrera = new JButton("Carrera");
+		btnCarrera.setBounds(144, 255, 116, 38);
+		contentPane.add(btnCarrera);
+		
+		btnInscripcion = new JButton("Inscripcion");
+		btnInscripcion.setBounds(144, 307, 116, 38);
+		contentPane.add(btnInscripcion);
+		
+		JLabel lbFondo = new JLabel("");
+		lbFondo.setIcon(new ImageIcon("C:\\Users\\gabri\\eclipse-workspace\\ProyectoFinalHanami\\src\\Images\\FondoMenuPrincipal.png"));
+		lbFondo.setBounds(0, 0, 547, 412);
+		contentPane.add(lbFondo);
 	}
 
 
-	/**
-	 * @return the btnIngresarProducto
-	 */
 	public JButton getBtnAlumno() {
 		return btnAlumno;
 	}
 
 
-	/**
-	 * @param btnIngresarProducto the btnIngresarProducto to set
-	 */
-	public void setBtnAlumno(JButton btnAlumno) {
-		this.btnAlumno = btnAlumno;
-	}
-
-
-	/**
-	 * @return the btnModificarProducto
-	 */
 	public JButton getBtnProfesor() {
 		return btnProfesor;
 	}
 
 
-	/**
-	 * @param btnModificarProducto the btnModificarProducto to set
-	 */
-	public void setBtnProfesor(JButton btnProfesor) {
-		this.btnProfesor = btnProfesor;
-	}
-
-
-	/**
-	 * @return the btnEliminarProducto
-	 */
 	public JButton getBtnMateria() {
 		return btnMateria;
 	}
 
 
-	/**
-	 * @param btnEliminarProducto the btnEliminarProducto to set
-	 */
-	public void setBtnMateria(JButton btnMateria) {
-		this.btnMateria = btnMateria;
-	}
-
-
-	/**
-	 * @return the btnMostrarProducto
-	 */
 	public JButton getBtnCursado() {
 		return btnCursado;
 	}
 
 
-	/**
-	 * @param btnMostrarProducto the btnMostrarProducto to set
-	 */
-	public void setBtnCursado(JButton btnCursado) {
-		this.btnCursado = btnCursado;
+	public JButton getBtnCarrera() {
+		return btnCarrera;
 	}
+
+
+	public JButton getBtnInscripcion() {
+		return btnInscripcion;
+	}
+
+		
 }
